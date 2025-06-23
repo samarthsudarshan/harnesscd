@@ -19,3 +19,18 @@ spec:
         image: busybox:latest
         command: ["/bin/sh", "-c", "echo 'BusyBox container is running'; sleep 3600"]
         imagePullPolicy: IfNotPresent
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: busybox-primary
+  annotations:
+    harness.io/primary-service: "true"
+spec:
+  selector:
+    app: busybox
+  ports:
+    - protocol: TCP
+      port: 80
+
+
